@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -8,6 +9,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./signup.component.scss'],
   
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
+  form!: FormGroup;
+
+
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      displayName: new FormControl('', [Validators.minLength(3)]),
+      email: new FormControl('', [Validators.email]),
+      password: new FormControl('', [Validators.minLength(6)]),
+    })
+  }
 
 }
